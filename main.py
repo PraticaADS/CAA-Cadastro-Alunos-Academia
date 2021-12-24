@@ -360,7 +360,7 @@ while True:
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Delata Alunos
+    # Delata Alunos cadastrado
     if window == janela3 and eventos == 'delete':  # deleta selecionado
 
         if listado == False:

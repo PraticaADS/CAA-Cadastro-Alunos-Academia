@@ -282,7 +282,7 @@ while True:
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Atualizações de alunos
+    # Atualizações de cadastro de aluno
     if window == janela2 and eventos == 'Alunos':
         tu.plano = bd.listaplano()
         tu.nomep = bd.listapersonal()
@@ -307,7 +307,7 @@ while True:
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Consulta Alunos
+    # Consulta Cadastro de Alunos
     if window == janela2 and eventos == 'Consulta Alunos':
         tcs.plano = bd.listaplano()
         tcs.nomep = bd.listapersonal()

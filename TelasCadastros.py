@@ -11,7 +11,7 @@ fnt = 'Arial 12'
 
 
 nomec = ""
-cpf=""
+cpf = ""
 cpf_listado = ""
 nomep = ""
 altura = ""
@@ -29,84 +29,96 @@ datem = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 plano = []
 previlegio = ["Leitura", "Escrita"]
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # Cadastro de aluno
+
+
 def janela_cadastro():
-    sg.theme(str(bd.tema)) 
+    sg.theme(str(bd.tema))
     cadastros = [
-        [sg.Text("Nome completo"), sg.Input(nomec, key='nomec', expand_x=True)],
-        [sg.Text("CPF"), sg.Input(cpf, key='cpf', size=(20, 30),expand_x=False),sg.Text("    Sexo"), sg.Combo(values=sexo, size=(20, 30), key='sexo',readonly=True,expand_x=True)],
-        [sg.Text("Data Mov."), sg.Input(datem, key='datem', disabled=True, size=(20, 30), expand_x=True),sg.Text("Altura"), sg.Input(altura, key='altura', size=(8, 30))],
+        [sg.Text("Nome completo"), sg.Input(
+            nomec, key='nomec', expand_x=True)],
+        [sg.Text("CPF"), sg.Input(cpf, key='cpf', size=(20, 30), expand_x=False), sg.Text(
+            "    Sexo"), sg.Combo(values=sexo, size=(20, 30), key='sexo', readonly=True, expand_x=True)],
+        [sg.Text("Data Mov."), sg.Input(datem, key='datem', disabled=True, size=(
+            20, 30), expand_x=True), sg.Text("Altura"), sg.Input(altura, key='altura', size=(8, 30))],
         [sg.Text("Data nascimento"),
-            sg.Input(datan, key='datan', size=(10, 30), disabled=True), sg.Button("Data Nascimento", key='data', expand_x=True,border_width=3)],
+            sg.Input(datan, key='datan', size=(10, 30), disabled=True), sg.Button("Data Nascimento", key='data', expand_x=True, border_width=3)],
         [sg.Text("Peso"), sg.Input(peso, key='peso', size=(8, 30)),
             sg.Input(imc, key='imc', disabled=True, size=(8, 30),
                      visible=False), sg.Text("              Status"),
-            sg.Combo(values=status, key='status', size=(20, 30), expand_x=True, default_value="ATIVO",readonly=True)],
-        [sg.Text("Plano"), sg.Combo(values=plano, key='plano', size=(20, 30), expand_x=False,readonly=True), sg.Text("Personal"),
-            sg.Combo(values=nomep, key='nomep', size=(20, 30), expand_x=False,readonly=True)],
+            sg.Combo(values=status, key='status', size=(20, 30), expand_x=True, default_value="ATIVO", readonly=True)],
+        [sg.Text("Plano"), sg.Combo(values=plano, key='plano', size=(20, 30), expand_x=False, readonly=True), sg.Text("Instrutor"),
+            sg.Combo(values=nomep, key='nomep', size=(20, 30), expand_x=False, readonly=True)],
 
-        [sg.Button('Cadastrar', key='cad_aluno',border_width=3), sg.Button('  Sair  ',border_width=3)]
+        [sg.Button('Cadastrar', key='cad_aluno', border_width=3),
+         sg.Button('  Sair  ', border_width=3)]
     ]
-    return sg.Window('Cadastro de aluno', layout=cadastros, finalize=True, modal=True,keep_on_top=True)
+    return sg.Window('Cadastro de aluno', layout=cadastros, finalize=True, modal=True, keep_on_top=True)
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-# Cadastro personal
-def janela_cadastro_personal():
-    sg.theme(str(bd.tema)) 
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Cadastro instrutor
+
+
+def janela_cadastro_instrutor():
+    sg.theme(str(bd.tema))
     cadastros = [
         [sg.Text("Nome completo"), sg.Input(
             nomec, key='nomep', expand_x=True)],
-        [sg.Text("Sexo"), sg.Combo(values=sexo, size=(20, 30), key='sexo',readonly=True),
+        [sg.Text("Sexo"), sg.Combo(values=sexo, size=(20, 30), key='sexo', readonly=True),
             sg.Text("Data Mov."), sg.Input(datem, key='datem', disabled=True, size=(20, 30), expand_x=True)],
         [sg.Text("Altura"), sg.Input(altura, key='altura', size=(8, 30)), sg.Text("Data nascimento"),
             sg.Input(datan, key='datan', size=(10, 30), disabled=True), sg.Button("Data Nascimento", key='data', expand_x=True)],
         [sg.Text("Peso"), sg.Input(peso, key='peso', size=(8, 30)),
             sg.Input(imc, key='imc', disabled=True, size=(8, 30),
                      visible=False), sg.Text("              Status"),
-            sg.Combo(values=status, key='status', size=(20, 30), expand_x=True, default_value="ATIVO",readonly=True)],
+            sg.Combo(values=status, key='status', size=(20, 30), expand_x=True, default_value="ATIVO", readonly=True)],
 
-        [sg.Button('Cadastrar', key='cad_personal',border_width=3), sg.Button('  Sair  ',border_width=3)]
+        [sg.Button('Cadastrar', key='cad_instrutor', border_width=3),
+         sg.Button('  Sair  ', border_width=3)]
     ]
-    return sg.Window('Cadastro de Personal', layout=cadastros, finalize=True, modal=True,keep_on_top=True)
+    return sg.Window('Cadastro de Instrutor', layout=cadastros, finalize=True, modal=True, keep_on_top=True)
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # Tela Cadastro adm
+
+
 def janela_cad_admin():
-    sg.theme(str(bd.tema)) 
+    sg.theme(str(bd.tema))
     cad_admin = [
         [sg.Text("Favor digitar o seu nome completo"),
-         sg.Input(nomec, key='nomeadm',expand_x=True)],
-        [sg.Text("Digite seu usuario"), sg.Input(user, key='user',size=(15,30)),sg.Text("Digite sua senha"), sg.Input(passs, key='passs', size=(10,30),password_char='*'),sg.Text("Repira a senha"), sg.Input(
-            passss, key='passss', password_char='*',size=(10,30))],
-                
+         sg.Input(nomec, key='nomeadm', expand_x=True)],
+        [sg.Text("Digite seu usuario"), sg.Input(user, key='user', size=(15, 30)), sg.Text("Digite sua senha"), sg.Input(passs, key='passs', size=(10, 30), password_char='*'), sg.Text("Repira a senha"), sg.Input(
+            passss, key='passss', password_char='*', size=(10, 30))],
+
         [sg.Text("Previlegio"), sg.Combo(
-            previlegio, s=(10, 30), key='previlegio',readonly=True),sg.Button('Cadastrar', key='Cadastrarr',border_width=3), sg.Button('  Sair  ',border_width=3)],
-        
+            previlegio, s=(10, 30), key='previlegio', readonly=True), sg.Button('Cadastrar', key='Cadastrarr', border_width=3), sg.Button('  Sair  ', border_width=3)],
+
 
     ]
-    return sg.Window('Cadastro de operador', layout=cad_admin, finalize=True, modal=True,keep_on_top=True)
+    return sg.Window('Cadastro de operador', layout=cad_admin, finalize=True, modal=True, keep_on_top=True)
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # Cadastro de plano
-def janela_cad_plano():
-    sg.theme(str(bd.tema)) 
-    cad_plano = [
-        [sg.Text("Nome plano"), sg.Input(nomec, key='nomeplano',expand_x=True)],
-        [sg.Text("Codigo Plano"), sg.Input(user, key='codplano',size=(15,30)),sg.Text("Status plano"), sg.Input(
-            "ATIVO", key='statusplano', size=(15,30),disabled=True)],
-        
-        [sg.Button('Cadastrar', key='Cadastrarrr',border_width=3), sg.Button('  Sair  ',border_width=3)]
-    ]
-    return sg.Window('Cadastro de plano', layout=cad_plano, finalize=True, modal=True,keep_on_top=True)
 
-    
-        
+
+def janela_cad_plano():
+    sg.theme(str(bd.tema))
+    cad_plano = [
+        [sg.Text("Nome plano"), sg.Input(
+            nomec, key='nomeplano', expand_x=True)],
+        [sg.Text("Codigo Plano"), sg.Input(user, key='codplano', size=(15, 30)), sg.Text("Status plano"), sg.Input(
+            "ATIVO", key='statusplano', size=(15, 30), disabled=True)],
+
+        [sg.Button('Cadastrar', key='Cadastrarrr', border_width=3),
+         sg.Button('  Sair  ', border_width=3)]
+    ]
+    return sg.Window('Cadastro de plano', layout=cad_plano, finalize=True, modal=True, keep_on_top=True)

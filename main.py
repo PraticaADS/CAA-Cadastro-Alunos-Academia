@@ -42,7 +42,7 @@ def limpacampos():
     window.find_element('sexo').Update('')
 
 
-def limpacampospersonal():
+def limpacamposinstrutor():
 
     window.find_element('nomep').Update('')
     window.find_element('altura').Update('')
@@ -51,7 +51,7 @@ def limpacampospersonal():
     window.find_element('sexo').Update('')
 
 
-def limpacampospersonal2():
+def limpacamposinstrutor2():
     tc.nomec = ""
     tc.sexo = ""
     tc.altura = ""
@@ -169,7 +169,7 @@ while True:
         tc.plano = resultado_listaplano
 
         #tc.plano = bd.listaplano()
-        lista_sem_ = bd.listapersonal()
+        lista_sem_ = bd.listainstrutor()
         resultado_lista = [''.join(i) for i in lista_sem_]
         tc.nomep = resultado_lista
         janela3 = tc.janela_cadastro()
@@ -223,20 +223,20 @@ while True:
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Cadastro de personal
-    if window == janela2 and eventos == 'Personal':
-        janela3 = tc.janela_cadastro_personal()
+    # Cadastro de instrutor
+    if window == janela2 and eventos == 'Instrutor':
+        janela3 = tc.janela_cadastro_instrutor()
 
-    if window == janela3 and eventos == 'cad_personal':
+    if window == janela3 and eventos == 'cad_instrutor':
 
         if valores['nomep'] == "" or valores['sexo'] == "" or valores['altura'] == "" or valores['datan'] == "" or valores['peso'] == "" or valores['status'] == "":
             tp.msg = "Favor prencher todos os campos"
             janela4 = tp.janela_popup()
         else:
-            #bd.cadastrardados_personal(valores['nomep'].upper().replace(" ", "_"), valores['sexo'].upper(), valores['altura'].upper(), valores['datan'], valores['peso'], valores['status'].upper())
-            bd.cadastrardados_personal(valores['nomep'].upper(), valores['sexo'].upper(
+            #bd.cadastrardados_instrutor(valores['nomep'].upper().replace(" ", "_"), valores['sexo'].upper(), valores['altura'].upper(), valores['datan'], valores['peso'], valores['status'].upper())
+            bd.cadastrardados_instrutor(valores['nomep'].upper(), valores['sexo'].upper(
             ), valores['altura'].upper(), valores['datan'], valores['peso'], valores['status'].upper())
-            limpacampospersonal()
+            limpacamposinstrutor()
             tp.msg = "Dados Cadastrados com sucesso"
             janela4 = tp.janela_popup_ok_cadasto()
     # ===================================================================
@@ -285,7 +285,7 @@ while True:
     # Atualizações de cadastro de aluno
     if window == janela2 and eventos == 'Alunos':
         tu.plano = bd.listaplano()
-        tu.nomep = bd.listapersonal()
+        tu.nomep = bd.listainstrutor()
         # tu.plano.append("TODOS")
         # tu.nomep.append("TODOS")
 
@@ -294,13 +294,13 @@ while True:
         tu.plano = resultado_listaplano
         tu.plano.append("TODOS")
 
-        lista_sem_ = bd.listapersonal()
+        lista_sem_ = bd.listainstrutor()
         resultado_lista = [''.join(i) for i in lista_sem_]
         tu.nomep = resultado_lista
         tu.nomep.append("TODOS")
 
         tu.ret_plano = tu.plano
-        tu.ret_personal = tu.nomep
+        tu.ret_instrutor = tu.nomep
         janela3 = tu.ativos()
         tu.i = 0
         listado = False
@@ -310,7 +310,7 @@ while True:
     # Consulta Cadastro de Alunos
     if window == janela2 and eventos == 'Consulta Alunos':
         tcs.plano = bd.listaplano()
-        tcs.nomep = bd.listapersonal()
+        tcs.nomep = bd.listainstrutor()
         # tu.plano.append("TODOS")
         # tu.nomep.append("TODOS")
 
@@ -319,13 +319,13 @@ while True:
         tcs.plano = resultado_listaplano
         tcs.plano.append("TODOS")
 
-        lista_sem_ = bd.listapersonal()
+        lista_sem_ = bd.listainstrutor()
         resultado_lista = [''.join(i) for i in lista_sem_]
         tcs.nomep = resultado_lista
         tcs.nomep.append("TODOS")
 
         tcs.ret_plano = tcs.plano
-        tcs.ret_personal = tcs.nomep
+        tcs.ret_instrutor = tcs.nomep
         janela3 = tcs.ativos_consulta()
         tcs.i = 0
         listado = False
@@ -429,7 +429,7 @@ while True:
                 lista_sem_plano = bd.listaplano()
                 resultado_listaplano = [''.join(i) for i in lista_sem_plano]
                 tu.plano = resultado_listaplano
-                lista_sem_ = bd.listapersonal()
+                lista_sem_ = bd.listainstrutor()
                 resultado_lista = [''.join(i) for i in lista_sem_]
                 tu.nomep = resultado_lista
                 p_plano_alt = tu.status
@@ -477,10 +477,10 @@ while True:
         janela4.close()
         dados_lidos = bd.lista()
         window.find_element('lido').Update(dados_lidos)
-        limpacampospersonal2()
+        limpacamposinstrutor2()
 
     if window == janela5 and eventos == 'NÃO.':
-        limpacampospersonal2()
+        limpacamposinstrutor2()
         janela5.close()
         janela4.close()
     # ===================================================================
@@ -509,38 +509,38 @@ while True:
         if valores['f_sexo'] == "TODOS":
             valores['f_sexo'] = "%"
             dados_lidos = bd.listacrit_filtros(
-                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_personal'])
+                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_instrutor'])
             window.find_element('lido').Update(dados_lidos)
 
         if valores['f_status'] == "TODOS":
             valores['f_status'] = "%"
             dados_lidos = bd.listacrit_filtros(
-                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_personal'])
+                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_instrutor'])
             window.find_element('lido').Update(dados_lidos)
 
         if valores['b_plano'] == "TODOS":
             valores['b_plano'] = "%"
             dados_lidos = bd.listacrit_filtros(
-                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_personal'])
+                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_instrutor'])
             window.find_element('lido').Update(dados_lidos)
 
-        if valores['b_personal'] == "TODOS":
-            valores['b_personal'] = "%"
+        if valores['b_instrutor'] == "TODOS":
+            valores['b_instrutor'] = "%"
             dados_lidos = bd.listacrit_filtros(
-                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_personal'])
+                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_instrutor'])
             window.find_element('lido').Update(dados_lidos)
 
             tm.reg = bd.listacrit_filtros_qtd(
-                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_personal'])
+                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_instrutor'])
             msg = tm.reg[0][0]
             window.find_element('qdt_reg').Update(tm.reg[0][0])
         else:
             dados_lidos = bd.listacrit_filtros(
-                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_personal'])
+                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_instrutor'])
             window.find_element('lido').Update(dados_lidos)
 
             tm.reg = bd.listacrit_filtros_qtd(
-                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_personal'])
+                valores['f_status'], valores['f_sexo'], valores['f_imcm'], valores['f_imc'], valores['b_plano'], valores['b_instrutor'])
             msg = tm.reg[0][0]
             window.find_element('qdt_reg').Update(tm.reg[0][0])
 
@@ -667,127 +667,127 @@ while True:
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Consulta personais
-    if window == janela2 and eventos == 'Consulta Personais':
-        janela3 = tcs.ativospersonal_consulta()
+    # Consulta instrutores
+    if window == janela2 and eventos == 'Consulta Instrutores':
+        janela3 = tcs.ativosinstrutor_consulta()
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Atualizações personais
-    if window == janela2 and eventos == 'Personais':
-        janela3 = tu.ativospersonal()
+    # Atualizações instrutores
+    if window == janela2 and eventos == 'Instrutores':
+        janela3 = tu.ativosinstrutor()
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Lista todos os personais
-    if window == janela3 and eventos == 'listardadospersonal':
-        dados_lidospersonal = bd.pesquisapersonal()
-        window.find_element('lidopersonal').Update(dados_lidospersonal)
+    # Lista todos os instrutores
+    if window == janela3 and eventos == 'listardadosinstrutor':
+        dados_lidosinstrutor = bd.pesquisainstrutor()
+        window.find_element('lidoinstrutor').Update(dados_lidosinstrutor)
         row_colors = ((0, 'white'))
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Lista personais ativos
-    if window == janela3 and eventos == 'ativospersonal':
-        critpersonal = "ATIVO"
-        dados_lidospersonal = bd.listacritpersonal(critpersonal)
-        window.find_element('lidopersonal').Update(dados_lidospersonal)
+    # Lista instrutores ativos
+    if window == janela3 and eventos == 'ativosinstrutor':
+        critinstrutor = "ATIVO"
+        dados_lidosinstrutor = bd.listacritinstrutor(critinstrutor)
+        window.find_element('lidoinstrutor').Update(dados_lidosinstrutor)
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Lista personais inativos
-    if window == janela3 and eventos == 'inativospersonal':
-        critpersonal = "INATIVO"
-        dados_lidospersonal = bd.listacritpersonal(critpersonal)
-        window.find_element('lidopersonal').Update(dados_lidospersonal)
+    # Lista instrutores inativos
+    if window == janela3 and eventos == 'inativosinstrutor':
+        critinstrutor = "INATIVO"
+        dados_lidosinstrutor = bd.listacritinstrutor(critinstrutor)
+        window.find_element('lidoinstrutor').Update(dados_lidosinstrutor)
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Alterar cadastro de Personal
-    if window == janela3 and eventos == 'alterapersonal':  # alterar status
+    # Alterar cadastro de instrutor
+    if window == janela3 and eventos == 'alterainstrutor':  # alterar status
         bd.conection = bd.sqlite3.connect('bd.db')
         bd.c = bd.conection.cursor()
-        ld_lido = valores['lidopersonal']
+        ld_lido = valores['lidoinstrutor']
         if ld_lido != []:
             soma = sum(ld_lido)
-            x_d_lido = dados_lidospersonal
+            x_d_lido = dados_lidosinstrutor
             tu.nomec = x_d_lido[soma][1]
             tu.sexo = x_d_lido[soma][2]
             tu.altura = x_d_lido[soma][3]
             tu.datan = x_d_lido[soma][4]
             tu.peso = x_d_lido[soma][5]
-            tu.statuspersonal = x_d_lido[soma][6]
-            janela4 = tu.janela_cad_personal_alt()
+            tu.statusinstrutor = x_d_lido[soma][6]
+            janela4 = tu.janela_cad_instrutor_alt()
         else:
-            tp.msg = "Favor Lista e depois selecionar um Personal a ser deletado!"
+            tp.msg = "Favor Lista e depois selecionar um instrutor a ser deletado!"
             janela4 = tp.janela_popup_ok(tp.msg)
-    if window == janela4 and eventos == 'alt_cad_personal':
+    if window == janela4 and eventos == 'alt_cad_instrutor':
         bd.conection = bd.sqlite3.connect('bd.db')
         bd.c = bd.conection.cursor()
         nome_c = tu.nomec
-        at = valores['alturapersonal']
-        p_peso_alt = valores['pesopersonal']
-        stp = valores['statuspersonal']
+        at = valores['alturainstrutor']
+        p_peso_alt = valores['pesoinstrutor']
+        stp = valores['statusinstrutor']
         tp.msg = "Tem Certeza?"
-        janela5 = tp.janela_popup_uplpersonal(tp.msg)
-    if window == janela5 and eventos == 'simaltpersonal':
-        bd.upl_novopersonal(at, p_peso_alt, stp, nome_c)
+        janela5 = tp.janela_popup_uplinstrutor(tp.msg)
+    if window == janela5 and eventos == 'simaltinstrutor':
+        bd.upl_novoinstrutor(at, p_peso_alt, stp, nome_c)
         window = janela3
         janela5.close()
         janela4.close()
-        dados_lidos = bd.pesquisapersonal()
-        window.find_element('lidopersonal').Update(dados_lidos)
-    if window == janela5 and eventos == 'naoaltpersonal':
+        dados_lidos = bd.pesquisainstrutor()
+        window.find_element('lidoinstrutor').Update(dados_lidos)
+    if window == janela5 and eventos == 'naoaltinstrutor':
         janela5.close()
         janela4.close()
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Delete personal
-    if window == janela3 and eventos == 'deletepersona':  # deleta personal
-        ldpersonal = valores['lidopersonal']
-        if ldpersonal != []:
-            soma = sum(ldpersonal)
-            x_d_lido = dados_lidospersonal
+    # Delete instrutor
+    if window == janela3 and eventos == 'deleteinstrutor':  # deleta instrutor
+        ldinstrutor = valores['lidoinstrutor']
+        if ldinstrutor != []:
+            soma = sum(ldinstrutor)
+            x_d_lido = dados_lidosinstrutor
 
             y_d_lido = x_d_lido[soma][1]
-            tp.msg = "Confirmar alt_alterar exclusão do Personal: "+y_d_lido
-            janela4 = tp.janela_popup_delpersonal(tp.msg)
+            tp.msg = "Confirmar alt_alterar exclusão do instrutor: "+y_d_lido
+            janela4 = tp.janela_popup_delinstrutor(tp.msg)
         else:
-            tp.msg = "Favor Lista e depois selecionar o personal ser deletado!"
+            tp.msg = "Favor Lista e depois selecionar o instrutor ser deletado!"
             janela4 = tp.janela_popup_ok(tp.msg)
-    if window == janela4 and eventos == 'simpersonal':
-        bd.deleteselpersonal(y_d_lido)
+    if window == janela4 and eventos == 'siminstrutor':
+        bd.deleteselinstrutor(y_d_lido)
         window = janela3
-        bd.pesquisapersonal()
-        dados_lidospersonal = bd.pesquisapersonal()
-        window.find_element('lidopersonal').Update(dados_lidospersonal)
+        bd.pesquisainstrutor()
+        dados_lidosinstrutor = bd.pesquisainstrutor()
+        window.find_element('lidoinstrutor').Update(dados_lidosinstrutor)
         janela4.close()
 
-    if window == janela4 and eventos == 'naopersonal':
+    if window == janela4 and eventos == 'naoinstrutor':
         janela4.close()
-        dados_lidospersonal = bd.pesquisapersonal()
-        # window.find_element('lidopersonal').Update(dados_lidospersonal)
+        dados_lidosinstrutor = bd.pesquisainstrutor()
+        # window.find_element('lidoinstrutor').Update(dados_lidosinstrutor)
         row_colors = ((0, 'white'))
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
-    # Pesquisa por nome personal
-    if window == janela3 and eventos == 'bt_pesquisapersonal':
-        pesquisaPersonal = valores['inp_pesquisapersonal']
+    # Pesquisa por nome instrutor
+    if window == janela3 and eventos == 'bt_pesquisainstrutor':
+        pesquisainstrutor = valores['inp_pesquisainstrutor']
         pesquisa2 = "%"
-        pesquisa_personal = pesquisa2 + pesquisaPersonal + pesquisa2
-        dados_lidos_pes_personal = bd.listacrit(pesquisa_personal)
-        dados_lidos_pes_personal = bd.pesquisa_personal(pesquisa_personal)
-        if dados_lidos_pes_personal == []:
+        pesquisa_instrutor = pesquisa2 + pesquisainstrutor + pesquisa2
+        dados_lidos_pes_instrutor = bd.listacrit(pesquisa_instrutor)
+        dados_lidos_pes_instrutor = bd.pesquisa_instrutor(pesquisa_instrutor)
+        if dados_lidos_pes_instrutor == []:
             tp.msg = "Sem dados de retorno para sua pesquisa"
             janela4 = tp.janela_popup()
         else:
-            window.find_element('lidopersonal').Update(
-                dados_lidos_pes_personal)
-            ld_lidopersonal = dados_lidos_pes_personal[0][1]
-            cond = ld_lidopersonal
-            nv_val_alterarpersonal = valores['talterarpersonal']
+            window.find_element('lidoinstrutor').Update(
+                dados_lidos_pes_instrutor)
+            ld_lidoinstrutor = dados_lidos_pes_instrutor[0][1]
+            cond = ld_lidoinstrutor
+            nv_val_alterarinstrutor = valores['talterarinstrutor']
     # ===================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================

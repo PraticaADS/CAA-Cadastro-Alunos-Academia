@@ -7,9 +7,9 @@ from datetime import datetime
 escolha = ""
 tema = "SystemDefault"
 
-#if escolha == "Claro":
+# if escolha == "Claro":
 #    tema = "TealMono"
-#if escolha == "Escuro":
+# if escolha == "Escuro":
 #    tema = "DarkBlack"
 
 
@@ -25,58 +25,63 @@ def create_table():
 
 
 # create_table()
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-# Cria tabela personal
-def create_table_personal():
-    c.execute('CREATE TABLE IF NOT EXISTS personal(id INTEGER PRIMARY KEY AUTOINCREMENT, nomep text, sexo text, altura real, datan text, peso real, status real)')
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Cria tabela instrutor
+def create_table_instrutor():
+    c.execute('CREATE TABLE IF NOT EXISTS instrutor(id INTEGER PRIMARY KEY AUTOINCREMENT, nomep text, sexo text, altura real, datan text, peso real, status real)')
 
 
-# create_table_personal()
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Cria Taleba operadores
+# create_table_instrutor()
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Cria Taleba operadores
 
 def create_table_adm():
     c.execute('CREATE TABLE IF NOT EXISTS admin(id INTEGER PRIMARY KEY AUTOINCREMENT, nomeadm text, user text, passs int, passss int)')
 
 # create_table_adm()
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Cria tabela plano
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Cria tabela plano
+
+
 def create_table_plano():
     c.execute('CREATE TABLE IF NOT EXISTS planos(id INTEGER PRIMARY KEY AUTOINCREMENT, nomeplano text, codplano text)')
 
 # create_table_plano()
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # consulta com filtros
 f_status = "%"
 f_sexo = "%"
 f_imcm = 0
 f_imc = 1000
 b_plano = "Z"
-b_personal = "PEDRO"
+b_instrutor = "PEDRO"
 
 
-def listacrit_filtros(f_status, f_sexo, f_imcm, f_imc, b_plano, b_personal):
+def listacrit_filtros(f_status, f_sexo, f_imcm, f_imc, b_plano, b_instrutor):
     c = conection.cursor()
     c.execute('SELECT * FROM alunos WHERE status like ? AND sexo like ? AND imc >= ? AND imc <= ? AND plano like ? AND nomep like ? ORDER BY nomec',
-              (f_status, f_sexo, f_imcm, f_imc, b_plano, b_personal,))
+              (f_status, f_sexo, f_imcm, f_imc, b_plano, b_instrutor,))
     dadoslidos = c.fetchall()
     conection.commit()
     # print(dadoslidos)
     return dadoslidos
-#listacrit_filtros(f_status, f_sexo,f_imcm,f_imc,b_plano,b_personal)
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+#listacrit_filtros(f_status, f_sexo,f_imcm,f_imc,b_plano,b_instrutor)
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # lista alunos por criterios ativos ou inativos
+
+
 def listacrit(crit):
     c = conection.cursor()
     c.execute('SELECT * FROM alunos WHERE status = ? ORDER BY nomec', (crit,))
@@ -85,10 +90,12 @@ def listacrit(crit):
     # print(dadoslidos)
     return dadoslidos
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # lista plano por criterios ativos ou inativos
+
+
 def listacritplano(critplano):
     c = conection.cursor()
     c.execute(
@@ -97,23 +104,26 @@ def listacritplano(critplano):
     conection.commit()
     # print(dadoslidos)
     return dadoslidosplano
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-# lista personal por criterios ativos ou inativos
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# lista instrutor por criterios ativos ou inativos
 
-def listacritpersonal(critpersonal):
+
+def listacritinstrutor(critinstrutor):
     c = conection.cursor()
     c.execute(
-        'SELECT * FROM personal WHERE status = ? ORDER BY nomep', (critpersonal,))
-    dadoslidospersonal = c.fetchall()
+        'SELECT * FROM instrutor WHERE status = ? ORDER BY nomep', (critinstrutor,))
+    dadoslidosinstrutor = c.fetchall()
     conection.commit()
     # print(dadoslidos)
-    return dadoslidospersonal
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Pesquisa em alunos com criterio
+    return dadoslidosinstrutor
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Pesquisa em alunos com criterio
+
+
 def pesquisa(pesquisa3):
     c = conection.cursor()
     #c.execute('SELECT * FROM alunos WHERE status = ? ORDER BY nomec', (crit,))
@@ -125,36 +135,42 @@ def pesquisa(pesquisa3):
 
     return dados_lidos
     # select * from usuarios where nomes like '%pedro%'
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Pesquisa em planos com criterio
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Pesquisa em planos com criterio
+
+
 def pesquisa_plano(pesquisa_plano):
-    c = conection.cursor()    
+    c = conection.cursor()
     c.execute('select * from planos where nomeplano like ? ORDER BY nomeplano',
               (pesquisa_plano,) or (""))
     dados_lidos_pes_plano = c.fetchall()
     conection.commit()
-    
+
     return dados_lidos_pes_plano
-    
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================#======================================================    
-#Pesquisa personal com criterio
-def pesquisa_personal(pesquisa_personal):
-    c = conection.cursor()    
-    c.execute('select * from personal where nomep like ? ORDER BY nomep',
-              (pesquisa_personal,) or (""))
-    dados_lidos_pes_personal = c.fetchall()
+
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================#======================================================
+# Pesquisa instrutor com criterio
+
+
+def pesquisa_instrutor(pesquisa_instrutor):
+    c = conection.cursor()
+    c.execute('select * from instrutor where nomep like ? ORDER BY nomep',
+              (pesquisa_instrutor,) or (""))
+    dados_lidos_pes_instrutor = c.fetchall()
     conection.commit()
-    
-    return dados_lidos_pes_personal
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================      
+
+    return dados_lidos_pes_instrutor
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 
 # Pesquisa planos
+
+
 def pesquisaplano():
     c = conection.cursor()
 
@@ -169,29 +185,29 @@ def pesquisaplano():
 
 # pesquisaplano()
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-# lista personal
-def pesquisapersonal():
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# lista instrutor
+def pesquisainstrutor():
     c = conection.cursor()
 
-    c.execute('select * from personal')
-    dados_lidospersonal = c.fetchall()
+    c.execute('select * from instrutor')
+    dados_lidosinstrutor = c.fetchall()
     conection.commit()
     # print(dados_lidosplano)
 
-    return dados_lidospersonal
+    return dados_lidosinstrutor
     # select * from usuarios where nomes like '%pedro%'
 
 
 # pesquisaplano()
 
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Lista todos alunos
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Lista todos alunos
 def lista():
     c = conection.cursor()
     c.execute('SELECT * FROM alunos ORDER BY nomec ')
@@ -200,32 +216,39 @@ def lista():
     # print(dadoslidos)
     return dadoslidos
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Delete aluno
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Delete aluno
+
+
 def deletesel(x):
     c.execute('DELETE FROM alunos WHERE datem = ?', (x,))
     conection.commit()
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # delete plano
+
+
 def deleteselplano(x):
     c.execute('DELETE FROM planos WHERE nomeplano = ?', (x,))
     conection.commit()
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-# delete personal
-def deleteselpersonal(x):
-    c.execute('DELETE FROM personal WHERE nomep = ?', (x,))
-    conection.commit()    
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# delete instrutor
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+
+def deleteselinstrutor(x):
+    c.execute('DELETE FROM instrutor WHERE nomep = ?', (x,))
+    conection.commit()
+
+
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # Updade aluno
 nv = "ad"
 cond = "FREDY ROMANO"
@@ -240,9 +263,10 @@ def upl(nv, cond):
 
 # upl(nv,cond)
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # Updade Aluno (NOVO)
 dm = "26/09/2021 10:34:27"
 a = 65
@@ -262,10 +286,12 @@ def upl_novo(a, p, st, im, pl, pers, dm):
               (a, p, st, im, pl, pers, dm))
     conection.commit()
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # update cadastro plano
+
+
 def upl_novoplano(stp, n):
     conection = sqlite3.connect('bd.db')
     c = conection.cursor()
@@ -273,26 +299,29 @@ def upl_novoplano(stp, n):
     c.execute('UPDATE planos SET statusplano = ? WHERE nomeplano =?', (stp, n))
     conection.commit()
 
-# update cadastro personal
+# update cadastro instrutor
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Upgrade Personal
-def upl_novopersonal(at, ps, stp, n):
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Upgrade instrutor
+
+
+def upl_novoinstrutor(at, ps, stp, n):
     conection = sqlite3.connect('bd.db')
     c = conection.cursor()
 
     c.execute(
-        'UPDATE personal SET altura =?, peso =?, status = ? WHERE nomep =?', (at, ps, stp, n))
+        'UPDATE instrutor SET altura =?, peso =?, status = ? WHERE nomep =?', (at, ps, stp, n))
     conection.commit()
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 # cadastro de alunos
 nomec = "ssa"
-cpf=""
+cpf = ""
 datem = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 sexo = "sasas"
 altura = 1
@@ -304,7 +333,7 @@ plano = "planoaqqqqq"
 nomep = ""
 
 
-def cadastrardados(nomec, cpf,datem, sexo, altura, datan, peso, imc, status, plano, nomep):
+def cadastrardados(nomec, cpf, datem, sexo, altura, datan, peso, imc, status, plano, nomep):
     conection = sqlite3.connect('bd.db')
     c = conection.cursor()
     c.execute('INSERT INTO alunos (nomec, cpf,datem, sexo, altura,  datan, peso, imc, status, plano, nomep) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
@@ -312,35 +341,39 @@ def cadastrardados(nomec, cpf,datem, sexo, altura, datan, peso, imc, status, pla
     conection.commit()
 #cadastrardados(nomec,datem,sexo, altura,  datan, peso ,imc, status,plano)
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Cadastro de Aluno(Para Possoivel tratamento de historico)
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Cadastro de Aluno(Para Possoivel tratamento de historico)
+
+
 def cadastrardados_h(nomec, cpf, datem, sexo, altura, datan, peso, imc, status, plano, nomep):
     conection = sqlite3.connect('bd.db')
     c = conection.cursor()
     c.execute('INSERT INTO h_alunos (nomec, cpf, datem, sexo, altura,  datan, peso, imc, status, plano,nomep) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
-              (nomec, cpf,datem, sexo, altura,  datan, peso, imc, status, plano, nomep))
+              (nomec, cpf, datem, sexo, altura,  datan, peso, imc, status, plano, nomep))
     conection.commit()
 
 #cadastrardados_h(nomec,datem,sexo, altura,  datan, peso ,imc, status,plano,nomep)
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-# cadastro de personall
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# cadastro de instrutorl
 
-def cadastrardados_personal(nomep, sexo, altura,  datan, peso, status):
+
+def cadastrardados_instrutor(nomep, sexo, altura,  datan, peso, status):
     conection = sqlite3.connect('bd.db')
     c = conection.cursor()
-    c.execute('INSERT INTO personal (nomep, sexo, altura,  datan, peso, status) VALUES (?,?,?,?,?,?)',
+    c.execute('INSERT INTO instrutor (nomep, sexo, altura,  datan, peso, status) VALUES (?,?,?,?,?,?)',
               (nomep, sexo, altura,  datan, peso, status))
     conection.commit()
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================  
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
 
 # cadastro de  operador
+
 
 def cadastraruser(nomeadm, user, passs, passss, previlegio):
     conection = sqlite3.connect('bd.db')
@@ -349,10 +382,12 @@ def cadastraruser(nomeadm, user, passs, passss, previlegio):
               (nomeadm, user, passs, passss, previlegio))
     conection.commit()
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
  # cadastro de planos
+
+
 def cadastrarplanos(nomeplano, codplano, statusplano):
     conection = sqlite3.connect('bd.db')
     c = conection.cursor()
@@ -360,78 +395,86 @@ def cadastrarplanos(nomeplano, codplano, statusplano):
               (nomeplano, codplano, statusplano))
     conection.commit()
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Lista planos ativos
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Lista planos ativos
+
+
 def listaplano():
     c = conection.cursor()
     c.execute('SELECT codplano FROM planos WHERE statusplano ="ATIVO" ')
     dadoslidos = c.fetchall()
     conection.commit()
-    #print(dadoslidos)
+    # print(dadoslidos)
     return dadoslidos
 # listaplano()
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Lista personal todos
-def listapersonal():
-    c = conection.cursor()
-    c.execute('SELECT nomep FROM personal ORDER BY nomep')
-    dadoslidos = c.fetchall()
-    conection.commit()
-    #print(dadoslidos)    
-    return dadoslidos
-#listapersonal()
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-# conta registros com filtros
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Lista instrutor todos
 
-def listacrit_filtros_qtd(f_status, f_sexo, f_imcm, f_imc, b_plano, b_personal):
+
+def listainstrutor():
     c = conection.cursor()
-    c.execute('select count(nomec) from alunos WHERE status like ? AND sexo like ? AND imc >= ? AND imc <= ? AND plano like ? AND nomep like ? ORDER BY nomec',
-              (f_status, f_sexo, f_imcm, f_imc, b_plano, b_personal,))
+    c.execute('SELECT nomep FROM instrutor ORDER BY nomep')
     dadoslidos = c.fetchall()
     conection.commit()
     # print(dadoslidos)
     return dadoslidos
-#listacrit_filtros_qtd(f_status, f_sexo,f_imcm,f_imc,b_plano,b_personal)
+# listainstrutor()
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# conta registros com filtros
+
+
+def listacrit_filtros_qtd(f_status, f_sexo, f_imcm, f_imc, b_plano, b_instrutor):
+    c = conection.cursor()
+    c.execute('select count(nomec) from alunos WHERE status like ? AND sexo like ? AND imc >= ? AND imc <= ? AND plano like ? AND nomep like ? ORDER BY nomec',
+              (f_status, f_sexo, f_imcm, f_imc, b_plano, b_instrutor,))
+    dadoslidos = c.fetchall()
+    conection.commit()
+    # print(dadoslidos)
+    return dadoslidos
+#listacrit_filtros_qtd(f_status, f_sexo,f_imcm,f_imc,b_plano,b_instrutor)
 
 
 # select count(nomec) from alunos
 usuario = "EUDSON"
 
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Tipo de user logado
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Tipo de user logado
+
+
 def retlogin(logado):
     c = conection.cursor()
     c.execute('SELECT previlegio FROM admin WHERE user =?', (logado,))
     dadoslidos = c.fetchall()
     conection.commit()
-    #print(dadoslidos)
+    # print(dadoslidos)
     return dadoslidos
 
+
 # retlogin(usuario)
-#=================================================================== 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#===================================================================
-#Tratamento CPF
+# ===================================================================
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ===================================================================
+# Tratamento CPF
 cpf_retornado = "00938936476"
-#Lista todos cpf
+# Lista todos cpf
+
+
 def lista_cpf(cpf_digitado):
     c = conection.cursor()
     c.execute('select cpf from alunos where cpf like ? ORDER BY cpf',
               (cpf_digitado,))
     cpf_retornado = c.fetchall()
     conection.commit()
-    #print(cpf_retornado)
+    # print(cpf_retornado)
 
-    return cpf_retornado 
-#lista_cpf(cpf_retornado) 
-
-
+    return cpf_retornado
+# lista_cpf(cpf_retornado)

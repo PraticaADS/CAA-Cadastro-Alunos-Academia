@@ -136,8 +136,9 @@ while True:
         else:
             bd.escolha = valores['escolha']
 
-            if bd.escolha == "Claro":
-                bd.tema = "SystemDefault"
+            if bd.escolha == "Blue":
+                #bd.tema = "SystemDefault"
+                bd.tema = "Material1"
             if bd.escolha == "Escuro":
                 bd.tema = "SandyBeach"
             if dadoslidos[0][0] == "Master":
@@ -211,10 +212,11 @@ while True:
                     tp.msg = "Dados Cadastrados com sucesso"
                     janela4 = tp.janela_popup_ok_cadasto()
                 except ValueError:
-                    tp.msg = "Favor usar aplenas numeros para peso e alturapeso e altura validos"
+                    tp.msg = "Valores invalidos, Favor usar apenas numeros para os campos peso e altura"
                     janela4 = tp.janela_popup()
 
     if eventos == 'data':
+        
         janela4 = sg.popup_get_date(start_year=1980, month_names=[
                                     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"])
         if janela4:

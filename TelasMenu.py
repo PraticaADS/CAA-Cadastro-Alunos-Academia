@@ -14,7 +14,7 @@ fnt = 'Arial 12'
 
 nome = ""
 senha = ""
-tema = "Claro", "Escuro"
+tema = "Blue", "Escuro"
 
 # ===================================================================
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -28,7 +28,7 @@ def janela_login():
         [sg.Text("Digite seu usuario"), sg.Input(
             nome, key='nome', focus=True)],
         [sg.Text("Digite sua senha  "), sg.Input(senha, key='senha', password_char='*')
-         ], [sg.Text("Tema                  "), sg.Combo(default_value="Claro", values=tema, size=(20, 30), key='escolha', readonly=True, expand_x=False)],
+         ], [sg.Text("Tema                  "), sg.Combo(default_value="Blue", values=tema, size=(20, 30), key='escolha', readonly=True, expand_x=False)],
         [sg.Text("=====================================================================")],
         [sg.Text("     "), sg.Button('Entrar', expand_x=True, border_width=3, ), sg.Text(
             "     "), sg.Button('  Sair  ', expand_x=True, border_width=3), sg.Text("     "), ]

@@ -81,7 +81,7 @@ def janela_cadastro_instrutor():
         [sg.Button('Cadastrar', key='cad_instrutor', border_width=3),
          sg.Button('  Sair  ', border_width=3)]
     ]
-    return sg.Window('Cadastro de Instrutor', layout=cadastros, finalize=True, modal=True, keep_on_top=True)
+    return sg.Window('Cadastro de nstrutor', layout=cadastros, finalize=True, modal=True, keep_on_top=True)
 
 # ===================================================================
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

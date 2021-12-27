@@ -51,7 +51,7 @@ def janelamenuadm():
                 ['Consultas', ['Consulta Alunos',
                                'Consulta Planos', 'Consulta Instrutores']],
                 ['Ajuda', ['Help', 'About...']],
-                ['Admin', ['Cadastro User']]]
+                ['Admin', ['Cadastro Funcionario']]]
 
     # ------ GUI Defintion ------ #
     frame_layout = [
@@ -86,7 +86,7 @@ def janelamenuescrita():
                 ['Consultas', ['Consulta Alunos',
                                'Consulta Planos', 'Consulta Instrutores']],
                 ['Ajuda', ['Help', 'About...']],
-                ['!Admin', ['Cadastro User']]]
+                ['!Admin', ['Cadastro Funcionario']]]
 
     # ------ GUI Defintion ------ #
     frame_layout = [
@@ -119,7 +119,7 @@ def janelamenueleitura():
                 ['Consultas', ['Consulta Alunos',
                                'Consulta Planos', 'Consulta Instrutores']],
                 ['Ajuda', ['Help', 'About...']],
-                ['!Admin', ['Cadastro User']]]
+                ['!Admin', ['Cadastro Funcionario']]]
 
     # ------ GUI Defintion ------ #
     frame_layout = [

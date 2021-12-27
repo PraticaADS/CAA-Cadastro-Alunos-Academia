@@ -45,7 +45,7 @@ def janela_cadastro():
         [sg.Text("Data Mov."), sg.Input(datem, key='datem', disabled=True, size=(
             20, 30), expand_x=True), sg.Text("Altura"), sg.Input(altura, key='altura', size=(8, 30))],
         [sg.Text("Data nascimento"),
-            sg.Input(datan, key='datan', size=(10, 30), disabled=True), sg.Button("Data Nascimento", key='data', expand_x=True, border_width=3)],
+            sg.Input(datan, key='datan', size=(10, 30), disabled=True), sg.Button("Escolher Data Nascimento", key='data', expand_x=True, border_width=3)],
         [sg.Text("Peso"), sg.Input(peso, key='peso', size=(8, 30)),
             sg.Input(imc, key='imc', disabled=True, size=(8, 30),
                      visible=False), sg.Text("              Status"),
@@ -102,7 +102,7 @@ def janela_cad_admin():
 
 
     ]
-    return sg.Window('Cadastro de operador', layout=cad_admin, finalize=True, modal=True, keep_on_top=True)
+    return sg.Window('Cadastro de Funcionario', layout=cad_admin, finalize=True, modal=True, keep_on_top=True)
 
 # ===================================================================
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

@@ -181,20 +181,27 @@ while True:
         if valores['nomec'] == "" or valores['sexo'] == "" or valores['altura'] == "" or valores['datan'] == "" or valores['peso'] == "" or valores['status'] == "" or valores['plano'] == "" or valores['nomep'] == "":
             tp.msg = "Favor prencher todos os campos corretamente"
             janela4 = tp.janela_popup()
+
+        elif float(valores['altura'].replace(',', '.')) > 3 or float(valores['altura'].replace(',', '.')) < 1:
+            tp.msg = "Digite sua altura correta, entre 1 e 3 metros"
+            janela4 = tp.janela_popup()
+        elif float(valores['peso'].replace(',', '.')) > 300 or float(valores['peso'].replace(',', '.')) < 10:
+            tp.msg = "Digite seu pesos correto, entre 10 e 300 quilos"
+            janela4 = tp.janela_popup()    
+                
         elif st_cpf == False:
-            new_cpf_one = cpf.generate()  # gera cpf valido
-            window.find_element('cpf').Update(new_cpf_one)  # gera cpf valido
-            tp.msg = "Favor colocar um cpf valido, para fins de teste caso não preencha o sistema gera um automaticamente"
+            #new_cpf_one = cpf.generate()  # gera cpf valido
+            window.find_element('cpf').Update("")  
+            tp.msg = "Favor colocar um cpf valido"
             janela4 = tp.janela_popup()
 
         else:
 
             if bd.lista_cpf(valores['cpf']) != []:
-                tp.msg = "Ja tem um cadastro com esse CPF, para fins de teste caso não preencha o sistema gera um automaticamente"
+                tp.msg = "Ja tem um cadastro com esse CPF"
                 janela4 = tp.janela_popup()
-                new_cpf_one = cpf.generate()  # gera cpf valido
-                window.find_element('cpf').Update(
-                    new_cpf_one)  # gera cpf valid
+                #new_cpf_one = cpf.generate()  # gera cpf valido
+                window.find_element('cpf').Update("")  # gera cpf valid
             else:
                 try:
                     p_peso_alt = float(valores['peso'].replace(',', '.'))
@@ -245,7 +252,7 @@ while True:
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     # ===================================================================
     # Cadastro de Operador
-    if window == janela2 and eventos == 'Cadastro User':
+    if window == janela2 and eventos == 'Cadastro Funcionario':
         janela3 = tc.janela_cad_admin()
     if window == janela3 and eventos == 'Cadastrarr':
         if valores['nomeadm'] == "" or valores['user'] == "" or valores['passs'] == "" or valores['passss'] == "" or valores['previlegio'] == "":

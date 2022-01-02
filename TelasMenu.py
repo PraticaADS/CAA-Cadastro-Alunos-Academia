@@ -50,7 +50,7 @@ def janelamenuadm():
                 ['Atualizações', ['Alunos', 'Planos', 'Instrutores']],
                 ['Consultas', ['Consulta Alunos',
                                'Consulta Planos', 'Consulta Instrutores']],
-                ['Ajuda', ['Help', 'About...']],
+                #['Ajuda', ['Help', 'About...']],
                 ['Admin', ['Cadastro Funcionario']]]
 
     # ------ GUI Defintion ------ #
@@ -85,7 +85,7 @@ def janelamenuescrita():
                 ['Atualizações', ['Alunos', 'Planos', 'Instrutores']],
                 ['Consultas', ['Consulta Alunos',
                                'Consulta Planos', 'Consulta Instrutores']],
-                ['Ajuda', ['Help', 'About...']],
+                #['Ajuda', ['Help', 'About...']],
                 ['!Admin', ['Cadastro Funcionario']]]
 
     # ------ GUI Defintion ------ #
@@ -118,7 +118,7 @@ def janelamenueleitura():
                 ['!Atualizações', ['Alunos', 'Planos', 'Instrutores']],
                 ['Consultas', ['Consulta Alunos',
                                'Consulta Planos', 'Consulta Instrutores']],
-                ['Ajuda', ['Help', 'About...']],
+                #['Ajuda', ['Help', 'About...']],
                 ['!Admin', ['Cadastro Funcionario']]]
 
     # ------ GUI Defintion ------ #

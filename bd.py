@@ -339,7 +339,7 @@ def cadastrardados(nomec, cpf, datem, sexo, altura, datan, peso, imc, status, pl
     c.execute('INSERT INTO alunos (nomec, cpf,datem, sexo, altura,  datan, peso, imc, status, plano, nomep) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
               (nomec, cpf, datem, sexo, altura,  datan, peso, imc, status, plano, nomep))
     conection.commit()
-#cadastrardados(nomec,datem,sexo, altura,  datan, peso ,imc, status,plano)
+
 
 # ===================================================================
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
